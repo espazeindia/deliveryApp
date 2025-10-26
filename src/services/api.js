@@ -27,7 +27,10 @@ apiClient.interceptors.request.use(
 // Auth APIs
 export const authAPI = {
   login: async (phoneNumber, pin) => {
-    const response = await apiClient.post('/delivery/login', { phoneNumber, pin });
+    const response = await apiClient.post('/delivery/login', { 
+      phoneNumber, 
+      pin: parseInt(pin, 10) // Convert PIN to integer
+    });
     return response.data;
   },
   
@@ -37,7 +40,10 @@ export const authAPI = {
   },
   
   verifyOTP: async (phoneNumber, otp) => {
-    const response = await apiClient.post('/delivery/verify-otp', { phoneNumber, otp });
+    const response = await apiClient.post('/delivery/verify-otp', { 
+      phoneNumber, 
+      otp: parseInt(otp, 10) // Convert OTP to integer
+    });
     return response.data;
   },
 };
